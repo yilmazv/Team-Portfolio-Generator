@@ -9,6 +9,9 @@ const { type } = require("os");
 let managerInfo = "";
 let internInfo = [];
 let engineerInfo = [];
+let engHolder = [];
+let interHolder = [];
+let mangHolder = [];
 
 function mangQuestions() {
   inquirer
@@ -112,8 +115,7 @@ function internQuestion() {
     emplAdd();
   });
 }
-
-cardGenerator = () => {
+function cardGenerator() {
   let htmlPageStart = `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -145,7 +147,7 @@ cardGenerator = () => {
 </div>`;
   let engCard = "";
   for (let i = 0; 1 < engineerInfo.length; i++) {
-    engCard += `<div class="card" style="width: 18rem;">
+    engCard = `<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h2>${engineerInfo.name}</h2>
     <h5 class="card-title">Manager</h5>
@@ -157,7 +159,7 @@ cardGenerator = () => {
   }
   let internCard = "";
   for (let i = 0; 1 < internInfo.length; i++) {
-    internCard += `<div class="card" style="width: 18rem;">
+    internCard = `<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h2>${internInfo.name}</h2>
     <h5 class="card-title">Manager</h5>
@@ -167,18 +169,19 @@ cardGenerator = () => {
   </div>
 </div>`;
   }
-  let htmlPageEnd = `</main>
+  let htmlPageEnd = `
+  </main>
   </body>
   </html>`;
 
   let fileContent =
     htmlPageStart + managerCard + engCard + internCard + htmlPageEnd;
-  fs.writeFile("./index.html", fileContent, function (err) {
+  fs.writeFile("./dist/index.html", fileContent, function (err) {
     if (err) throw err;
   });
   console.log("file created!");
   return fileContent;
-};
+}
 
 function emplAdd() {
   inquirer
