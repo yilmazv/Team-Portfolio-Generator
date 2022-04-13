@@ -7,11 +7,11 @@ const Intern = require("./lib/Intern");
 const { type } = require("os");
 
 let managerInfo = "";
-let internInfo = [];
-let engineerInfo = [];
-let engHolder = [];
-let interHolder = [];
-let mangHolder = [];
+let internInfo = "";
+let engineerInfo = "";
+let engHolder = "";
+let interHolder = "";
+let mangHolder = "";
 
 function mangQuestions() {
   inquirer
@@ -24,12 +24,12 @@ function mangQuestions() {
       {
         type: "input",
         message: "Please enter your id number: ",
-        name: "mangID",
+        name: "id",
       },
       {
         type: "input",
         message: "Please enter your email: ",
-        name: "mangEmail",
+        name: "email",
       },
       {
         type: "input",
@@ -40,80 +40,70 @@ function mangQuestions() {
     .then(function (data) {
       managerInfo = new Manager(
         data.name,
-        data.mangID,
-        data.mangEmail,
+        data.id,
+        data.email,
         data.officeNumber,
         emplAdd()
       );
     });
 }
 function newEngineer() {
-  const engineer = [
-    {
-      type: "input",
-      message: "Please enter Engineer name: ",
-      name: "engName",
-    },
-    {
-      type: "input",
-      message: "Please enter Engineer ID: ",
-      name: "engID",
-    },
-    {
-      type: "input",
-      message: "Please enter Engineer email: ",
-      name: "engEmail",
-    },
-    {
-      type: "input",
-      message: "Please enter Engineer GitHub: ",
-      name: "engGit",
-    },
-  ];
-  inquirer.prompt(engineer).then(function (data) {
-    let newEng = new Engineer(
-      data.engName,
-      data.engID,
-      data.engEmail,
-      data.endGit
-    );
-    engineerInfo.push(newEng);
-    emplAdd();
-  });
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Please enter Engineer name: ",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "Please enter Engineer ID: ",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Please enter Engineer email: ",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "Please enter Engineer GitHub: ",
+        name: "github",
+      },
+    ])
+    .then(function (data) {
+      engineerInfo = new Engineer(data.name, data.id, data.email, data.github);
+      emplAdd();
+    });
 }
 function internQuestion() {
-  const intern = [
-    {
-      type: "input",
-      message: "Please enter intern name: ",
-      name: "interName",
-    },
-    {
-      type: "input",
-      message: "Please enter intern  ID number: ",
-      name: "internID",
-    },
-    {
-      type: "input",
-      message: "Please enter intern email: ",
-      name: "internEmail",
-    },
-    {
-      type: "input",
-      message: "Please enter intern school name: ",
-      name: "internSchool",
-    },
-  ];
-  inquirer.prompt(intern).then(function (data) {
-    let newInternInfo = new Intern(
-      data.internName,
-      data.internID,
-      data.internEmail,
-      data.internSchool
-    );
-    internInfo.push(newInternInfo);
-    emplAdd();
-  });
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Please enter intern name: ",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "Please enter intern  ID number: ",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Please enter intern email: ",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "Please enter intern school name: ",
+        name: "school",
+      },
+    ])
+    .then(function (data) {
+      internInfo = new Intern(data.name, data.id, data.email, data.school);
+      emplAdd();
+    });
 }
 function cardGenerator() {
   let htmlPageStart = `<!DOCTYPE html>
@@ -141,45 +131,49 @@ function cardGenerator() {
     <h2>${managerInfo.name}</h2>
     <h5 class="card-title">Manager</h5>
     <p class="card-text">Office Number: ${managerInfo.officeNumber}</p>
-    <p class="card-text">Manager ID: ${managerInfo.mangID}</p>
-    <a href="mailto:${managerInfo.mangEmail}" class="card-link">Email</a>
+    <p class="card-text">Manager ID: ${managerInfo.id}</p>
+    <a href="mailto:${managerInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
   let engCard = "";
-  for (let i = 0; 1 < engineerInfo.length; i++) {
-    engCard = `<div class="card" style="width: 18rem;">
+  // for (let i = 0; 1 < engineerInfo.length; i++) {
+  engCard = `<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h2>${engineerInfo.name}</h2>
     <h5 class="card-title">Manager</h5>
-    <p class="card-text">Office Number: ${engineerInfo.officeNumber}</p>
-    <p class="card-text">Manager ID: ${engineerInfo.mangID}</p>
-    <a href="mailto:${engineerInfo.mangEmail}" class="card-link">Email</a>
+    <p class="card-text">GitHub: ${engineerInfo.github}</p>
+    <p class="card-text">Engineer ID: ${engineerInfo.id}</p>
+    <a href="mailto:${engineerInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  }
+  // }
   let internCard = "";
-  for (let i = 0; 1 < internInfo.length; i++) {
-    internCard = `<div class="card" style="width: 18rem;">
+  // for (let i = 0; 1 < internInfo.length; i++) {
+  internCard = `<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h2>${internInfo.name}</h2>
-    <h5 class="card-title">Manager</h5>
-    <p class="card-text">Office Number: ${internInfo.officeNumber}</p>
-    <p class="card-text">Manager ID: ${internInfo.mangID}</p>
-    <a href="mailto:${internInfo.mangEmail}" class="card-link">Email</a>
+    <h5 class="card-title">Intern</h5>
+    <p class="card-text">School: ${internInfo.school}</p>
+    <p class="card-text">ID Number: ${internInfo.id}</p>
+    <a href="mailto:${internInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  }
+  // }
   let htmlPageEnd = `
   </main>
   </body>
   </html>`;
+  console.log(engCard);
+  console.log(internCard);
 
   let fileContent =
     htmlPageStart + managerCard + engCard + internCard + htmlPageEnd;
+  console.log(engCard);
+  console.log(internCard);
   fs.writeFile("./dist/index.html", fileContent, function (err) {
     if (err) throw err;
   });
-  console.log("file created!");
+  console.log("Index.html was generated!");
   return fileContent;
 }
 
