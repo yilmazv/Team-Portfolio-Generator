@@ -12,7 +12,8 @@ let engineerInfo = "";
 let engHolder = "";
 let interHolder = "";
 let mangHolder = "";
-
+let engCard = "";
+let internCard = "";
 function mangQuestions() {
   inquirer
     .prompt([
@@ -135,9 +136,8 @@ function cardGenerator() {
     <a href="mailto:${managerInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  let engCard = "";
-  // for (let i = 0; 1 < engineerInfo.length; i++) {
-  engCard = `<div class="card" style="width: 18rem;">
+  for (let i = 0; i < engineerInfo.length; i++) {
+    engCard = `<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h2>${engineerInfo.name}</h2>
     <h5 class="card-title">Manager</h5>
@@ -146,10 +146,9 @@ function cardGenerator() {
     <a href="mailto:${engineerInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  // }
-  let internCard = "";
-  // for (let i = 0; 1 < internInfo.length; i++) {
-  internCard = `<div class="card" style="width: 18rem;">
+  }
+  for (let i = 0; i < internInfo.length; i++) {
+    internCard = `<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h2>${internInfo.name}</h2>
     <h5 class="card-title">Intern</h5>
@@ -158,7 +157,7 @@ function cardGenerator() {
     <a href="mailto:${internInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  // }
+  }
   let htmlPageEnd = `
   </main>
   </body>
