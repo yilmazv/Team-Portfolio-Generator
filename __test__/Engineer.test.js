@@ -1,5 +1,5 @@
-const Engineer = require("../lib/Engineer");
-const engineer = new engineer(
+const Engineer = require("../lib/engineer");
+const engineer = new Engineer(
   "Vehbi",
   "181913",
   "testing@gmail.com",
@@ -7,26 +7,26 @@ const engineer = new engineer(
 );
 
 test("Checking the constructor values", () => {
-  expect(Engineer.name).toBe("Vehbi");
-  expect(Engineer.id).toBe("181913");
-  expect(Engineer.email).toBe("testing@gmail.com");
-  expect(Engineer.github).toBe("github.com");
+  expect(engineer.name).toBe("Vehbi");
+  expect(engineer.id).toBe("181913");
+  expect(engineer.email).toBe("testing@gmail.com");
+  expect(engineer.github).toBe("github.com");
 });
 
 test("Checking the getName() function", () => {
-  expect(Engineer.getName()).toBe("Vehbi");
+  expect(engineer.getName()).toBe("Vehbi");
 });
 test("Checking the getID() function", () => {
-  expect(Engineer.getID()).toBe("181913");
+  expect(engineer.getId()).toBe("181913");
 });
 test("Checking the getName() function", () => {
-  expect(Engineer.getEmail()).toBe("testing@gmail.com");
+  expect(engineer.getEmail()).toBe("testing@gmail.com");
 });
 
 test("Checking the getName() function", () => {
-  expect(Engineer.getGitHub()).toBe("github.com");
+  expect(engineer.getGitHub()).toBe("github.com");
 });
 
 test("Checking the getRole() function", () => {
-  expect(Engineer.getRole()).toBe("Engineer");
+  expect(engineer.getRole()).toBe("Engineer");
 });

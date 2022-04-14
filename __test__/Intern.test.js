@@ -2,26 +2,26 @@ const Intern = require("../lib/Intern");
 const intern = new Intern("Vehbi", "181913", "testing@gmail.com", "Uofa");
 
 test("Checking the constructor values", () => {
-  expect(Intern.name).toBe("Vehbi");
-  expect(Intern.id).toBe("181913");
-  expect(Intern.email).toBe("testing@gmail.com");
-  expect(Intern.school).toBe("Uofa");
+  expect(intern.name).toBe("Vehbi");
+  expect(intern.id).toBe("181913");
+  expect(intern.email).toBe("testing@gmail.com");
+  expect(intern.school).toBe("Uofa");
 });
 
 test("Checking the getName() function", () => {
-  expect(Intern.getName()).toBe("Vehbi");
+  expect(intern.getName()).toBe("Vehbi");
 });
 test("Checking the getID() function", () => {
-  expect(Intern.getID()).toBe("181913");
+  expect(intern.getId()).toBe("181913");
 });
 test("Checking the getName() function", () => {
-  expect(Intern.getEmail()).toBe("testing@gmail.com");
+  expect(intern.getEmail()).toBe("testing@gmail.com");
 });
 
 test("Checking the getName() function", () => {
-  expect(Intern.getSchool()).toBe("Uofa");
+  expect(intern.getSchool()).toBe("Uofa");
 });
 
 test("Checking the getRole() function", () => {
-  expect(Intern.getRole()).toBe("Intern");
+  expect(intern.getRole()).toBe("Intern");
 });

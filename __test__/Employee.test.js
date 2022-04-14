@@ -11,7 +11,7 @@ test("Checking the getName() function", () => {
   expect(employee.getName()).toBe("Vehbi");
 });
 test("Checking the getID() function", () => {
-  expect(employee.getID()).toBe("181913");
+  expect(employee.getId()).toBe("181913");
 });
 test("Checking the getName() function", () => {
   expect(employee.getEmail()).toBe("testing@gmail.com");
