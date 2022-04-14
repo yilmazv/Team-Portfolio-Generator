@@ -9,11 +9,12 @@ const { type } = require("os");
 let managerInfo = "";
 let internInfo = "";
 let engineerInfo = "";
-let engHolder = "";
-let interHolder = "";
+let engHolder = [];
+let interHolder = [];
 let mangHolder = "";
 let engCard = "";
 let internCard = "";
+
 function mangQuestions() {
   inquirer
     .prompt([
@@ -103,6 +104,8 @@ function internQuestion() {
     ])
     .then(function (data) {
       internInfo = new Intern(data.name, data.id, data.email, data.school);
+      interHolder.push(internInfo);
+      console.log(internInfo);
       emplAdd();
     });
 }
@@ -126,8 +129,10 @@ function cardGenerator() {
         <h1>Team Porfolio</h1>
       </center>
     </body>
-  </html>`;
-  let managerCard = `<div class="card" style="width: 18rem;">
+  </html>
+  <section class = "row">`;
+
+  let managerCard = `<div class="card col m-3" style="width: 12rem;">
   <div class="card-body">
     <h2>${managerInfo.name}</h2>
     <h5 class="card-title">Manager</h5>
@@ -136,19 +141,19 @@ function cardGenerator() {
     <a href="mailto:${managerInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  for (let i = 0; i < engineerInfo.length; i++) {
-    engCard = `<div class="card" style="width: 18rem;">
+  // for (let i = 0; i < engineerInfo.length; i++) {
+  engCard = `<div class="card col m-3" style="width: 12rem;">
   <div class="card-body">
     <h2>${engineerInfo.name}</h2>
-    <h5 class="card-title">Manager</h5>
+    <h5 class="card-title">Engineer</h5>
     <p class="card-text">GitHub: ${engineerInfo.github}</p>
     <p class="card-text">Engineer ID: ${engineerInfo.id}</p>
     <a href="mailto:${engineerInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  }
-  for (let i = 0; i < internInfo.length; i++) {
-    internCard = `<div class="card" style="width: 18rem;">
+  // }
+  // for (let i = 0; i < internInfo.length; i++) {
+  internCard = `<div class="card col m-3" style="width: 12rem;">
   <div class="card-body">
     <h2>${internInfo.name}</h2>
     <h5 class="card-title">Intern</h5>
@@ -157,8 +162,9 @@ function cardGenerator() {
     <a href="mailto:${internInfo.email}" class="card-link">Email</a>
   </div>
 </div>`;
-  }
+  // }
   let htmlPageEnd = `
+  <section>
   </main>
   </body>
   </html>`;
